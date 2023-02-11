@@ -20,7 +20,7 @@ windowSpec = Window
   .partitionBy('location') 
   .orderBy('date')
 
-  df.select('iso_code','location','date', 'new_cases')
+df.select('iso_code','location','date', 'new_cases')
     .where(col('location').startswith('Russia'))
     .withColumn('lag_day_case',lag('new_cases',1).over(windowSpec))
     .where((col('date')>"2021-03-23")&(col('date')<="2021-03-31"))
